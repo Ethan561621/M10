@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Proclamation: Our 10th Monthsary</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --gold: #D4AF37;
+            --dark-gold: #B8860B;
+            --rose-gold: #B76E79;
+            --royal-purple: #5D3FD3;
+            --ivory: #FFFFF0;
+            --parchment: #F5F5DC;
+            --dark-red: #8B0000;
+        }
+        
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(183, 110, 121, 0.15) 0%, transparent 50%),
+                linear-gradient(135deg, #0c0c2e 0%, #1a1a40 50%, #2d1b69 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            padding: 20px;
+            position: relative;
+        }
+        
+        /* Animated stars in background */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: var(--gold);
+            border-radius: 50%;
+            animation: twinkle 5s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        /* Royal Seal */
+        .royal-seal {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, var(--gold) 0%, var(--dark-gold) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            border: 3px solid var(--rose-gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            animation: sealGlow 3s infinite alternate;
+        }
+        
+        @keyframes sealGlow {
+            from { box-shadow: 0 0 20px rgba(212, 175, 55, 0.5); }
+            to { box-shadow: 0 0 30px rgba(212, 175, 55, 0.8); }
+        }
+        
+        .seal-heart {
+            font-size: 2.5rem;
+            color: var(--dark-red);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Main Royal Letter Container */
+        .royal-letter {
+            width: 100%;
+            max-width: 800px;
+            background: 
+                linear-gradient(var(--parchment), var(--ivory)),
+                url('https://www.transparenttextures.com/patterns/vintage-speckles.png');
+            padding: 60px 70px;
+            border-radius: 5px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 
+                0 0 50px rgba(0, 0, 0, 0.5),
+                inset 0 0 100px rgba(212, 175, 55, 0.1);
+            border: 15px solid transparent;
+            border-image: url('https://i.imgur.com/7QqNt3k.png') 30 stretch;
+            transform: perspective(1000px) rotateX(1deg);
+            margin-top: 20px;
+        }
+        
+        /* Royal Border */
+        .royal-letter::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            background: linear-gradient(45deg, var(--gold), var(--rose-gold), var(--gold));
+            z-index: -1;
+            border-radius: 8px;
+            opacity: 0.3;
+        }
+        
+        /* Royal Header */
+        .royal-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 25px;
+        }
+        
+        .royal-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--dark-gold), transparent);
+        }
+        
+        .royal-title {
+            font-family: 'Cinzel', serif;
+            font-size: 3.2rem;
+            color: var(--dark-red);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            letter-spacing: 3px;
+        }
+        
+        .royal-subtitle {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            color: var(--rose-gold);
+            font-weight: 300;
+        }
+        
+        /* Royal Crown Divider */
+        .crown-divider {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin: 25px 0;
+            opacity: 0.7;
+        }
+        
+        /* Message Container */
+        .message-container {
+            font-size: 1.4rem;
+            line-height: 1.9;
+            text-align: justify;
+            color: #2c1810;
+            position: relative;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 5px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Initial Drop Cap */
+        .message-container::first-letter {
+            font-family: 'Cinzel', serif;
+            font-size: 5rem;
+            float: left;
+            line-height: 0.8;
+            margin-right: 15px;
+            margin-top: 10px;
+            color: var(--dark-red);
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Decorative Elements */
+        .decoration-left, .decoration-right {
+            position: absolute;
+            font-size: 4rem;
+            color: var(--gold);
+            opacity: 0.2;
+            z-index: 1;
+        }
+        
+        .decoration-left {
+            top: 50px;
+            left: 20px;
+        }
+        
+        .decoration-right {
+            bottom: 50px;
+            right: 20px;
+        }
+        
+        /* Royal Footer */
+        .royal-footer {
+            margin-top: 50px;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(184, 134, 11, 0.3);
+        }
+        
+        .signature {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.8rem;
+            color: var(--royal-purple);
+            margin-bottom: 10px;
+        }
+        
+        .date {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--dark-gold);
+            letter-spacing: 5px;
+        }
+        
+        /* Floating Rose Petals */
+        .rose-petals {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .petal {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--rose-gold);
+            border-radius: 50% 0 50% 50%;
+            transform: rotate(45deg);
+            opacity: 0.7;
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+        
+        /* Royal Button */
+        .royal-button {
+            display: block;
+            margin: 30px auto 0;
+            padding: 12px 30px;
+            background: linear-gradient(to right, var(--gold), var(--dark-gold));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .royal-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(to right, var(--rose-gold), var(--dark-red));
+        }
+        
+        /* Royal Music */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(212, 175, 55, 0.9);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            font-size: 1.5rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .royal-letter {
+                padding: 40px 30px;
+                margin-top: 60px;
+            }
+            
+            .royal-title {
+                font-size: 2.5rem;
+            }
+            
+            .royal-subtitle {
+                font-size: 1.8rem;
+            }
+            
+            .message-container {
+                font-size: 1.2rem;
+                line-height: 1.7;
+            }
+            
+            .signature {
+                font-size: 2.2rem;
+            }
+            
+            .royal-seal {
+                top: 15px;
+                right: 15px;
+                width: 60px;
+                height: 60px;
+            }
+            
+            .seal-heart {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .royal-letter {
+                padding: 30px 20px;
+            }
+            
+            .royal-title {
+                font-size: 2rem;
+            }
+            
+            .message-container {
+                font-size: 1.1rem;
+                line-height: 1.6;
+            }
+            
+            .message-container::first-letter {
+                font-size: 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Royal Seal -->
+    <div class="royal-seal">
+        <div class="seal-heart">❤️</div>
+    </div>
+    
+    <!-- Animated Stars -->
+    <div class="stars" id="stars"></div>
+    
+    <!-- Rose Petals -->
+    <div class="rose-petals" id="rosePetals"></div>
+    
+    <!-- Royal Letter -->
+    <div class="royal-letter">
+        <div class="royal-header">
+            <h1 class="royal-title">ROYAL PROCLAMATION</h1>
+            <h2 class="royal-subtitle">For My Beloved Princess</h2>
+        </div>
+        
+        <div class="crown-divider">👑</div>
+        
+        <div class="message-container">
+            Hi baby! Happy 9th monthsary satin!!!! Malapit na tayo sa anniversary natin! I love love love love you sooooo muchhhh kahittt sobranggg kulittt at minsannn naaa pasawayyy akoo lagiii mooo paaa dinnn akoo pinipiliiii. maraming salamattt dahilll andyannn kaaa paraaa sakinn attt nandito dinnn akooo paraaa sayooo, sanaa ayy magustuhan mo itong letter na isinusulat ko para sayoo at sana ayy maginggg tayoo parinnn hanggang sa susunoddd na habangg buhayyy, hayaan mo langgg yungg mgaa tao na mayy galitt sayoo or dinodownn kaa anditoo langg akoo paraaa icomforttt anggg princess kooo maraming maraming salamattt sa lahattt and happy monthsary uleee babyyy!!! I love you so much
+        </div>
+        
+        <div class="crown-divider">👑</div>
+        
+        <div class="royal-footer">
+            <div class="signature">Your Prince</div>
+            <div class="date">FEBRUARY 10 · TENTH MONTHSARY</div>
+            <button class="royal-button" id="royalButton">
+                <i class="fas fa-crown"></i> Sealed With Love
+            </button>
+        </div>
+    </div>
+    
+    <!-- Music Control -->
+    <div class="music-control" id="musicControl">
+        <i class="fas fa-music"></i>
+    </div>
+    
+    <audio id="royalMusic" loop>
+        <source src="https://assets.codepen.io/1468070/royal-music.mp3" type="audio/mpeg">
+        <!-- Alternative royalty-free music source -->
+    </audio>
+    
+    <script>
+        // Create stars
+        const stars = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.width = Math.random() * 3 + 1 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.top = Math.random() * 100 + 'vh';
+            star.style.animationDuration = Math.random() * 3 + 2 + 's';
+            star.style.animationDelay = Math.random() * 5 + 's';
+            stars.appendChild(star);
+        }
+        
+        // Create rose petals
+        const rosePetals = document.getElementById('rosePetals');
+        for (let i = 0; i < 30; i++) {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.width = Math.random() * 15 + 10 + 'px';
+            petal.style.height = petal.style.width;
+            petal.style.opacity = Math.random() * 0.5 + 0.3;
+            petal.style.animationDuration = Math.random() * 10 + 10 + 's';
+            petal.style.animationDelay = Math.random() * 5 + 's';
+            rosePetals.appendChild(petal);
+        }
+        
+        // Royal Button Effect
+        const royalButton = document.getElementById('royalButton');
+        royalButton.addEventListener('click', function() {
+            // Create gold dust effect
+            for (let i = 0; i < 50; i++) {
+                const gold = document.createElement('div');
+                gold.style.position = 'fixed';
+                gold.style.width = '5px';
+                gold.style.height = '5px';
+                gold.style.background = '#D4AF37';
+                gold.style.borderRadius = '50%';
+                gold.style.left = Math.random() * 100 + 'vw';
+                gold.style.top = '50vh';
+                gold.style.pointerEvents = 'none';
+                gold.style.zIndex = '100';
+                gold.style.animation = `goldFall ${Math.random() * 1 + 1}s forwards`;
+                document.body.appendChild(gold);
+                
+                setTimeout(() => {
+                    gold.remove();
+                }, 2000);
+            }
+            
+            // Add animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes goldFall {
+                    0% { transform: translateY(0) scale(1); opacity: 1; }
+                    100% { transform: translateY(100vh) scale(0); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Change button text temporarily
+            const originalText = royalButton.innerHTML;
+            royalButton.innerHTML = '<i class="fas fa-heart"></i> Proclamation Sealed!';
+            royalButton.style.background = 'linear-gradient(to right, #B76E79, #8B0000)';
+            
+            setTimeout(() => {
+                royalButton.innerHTML = originalText;
+                royalButton.style.background = 'linear-gradient(to right, #D4AF37, #B8860B)';
+            }, 2000);
+        });
+        
+        // Music control
+        const musicControl = document.getElementById('musicControl');
+        const royalMusic = document.getElementById('royalMusic');
+        let musicPlaying = false;
+        
+        // Alternative music source if first one fails
+        royalMusic.addEventListener('error', function() {
+            // Fallback to another royalty-free romantic music
+            royalMusic.src = 'https://assets.codepen.io/1468070/romantic-piano.mp3';
+        });
+        
+        musicControl.addEventListener('click', function() {
+            if (musicPlaying) {
+                royalMusic.pause();
+                musicControl.innerHTML = '<i class="fas fa-music"></i>';
+                musicControl.style.background = 'rgba(212, 175, 55, 0.9)';
+            } else {
+                royalMusic.play().catch(e => {
+                    console.log('Audio play failed:', e);
+                    musicControl.innerHTML = '<i class="fas fa-exclamation"></i>';
+                    musicControl.style.background = 'rgba(139, 0, 0, 0.9)';
+                });
+                musicControl.innerHTML = '<i class="fas fa-volume-up"></i>';
+                musicControl.style.background = 'rgba(183, 110, 121, 0.9)';
+            }
+            musicPlaying = !musicPlaying;
+        });
+        
+        // Add decorative elements
+        const decorations = ['❁', '✿', '❀', '✾', '♔', '♕', '♛'];
+        const messageContainer = document.querySelector('.message-container');
+        
+        const leftDeco = document.createElement('div');
+        leftDeco.className = 'decoration-left';
+        leftDeco.textContent = decorations[Math.floor(Math.random() * decorations.length)];
+        messageContainer.appendChild(leftDeco);
+        
+        const rightDeco = document.createElement('div');
+        rightDeco.className = 'decoration-right';
+        rightDeco.textContent = decorations[Math.floor(Math.random() * decorations.length)];
+        messageContainer.appendChild(rightDeco);
+        
+        // Typewriter effect for message
+        const message = document.querySelector('.message-container');
+        const originalText = message.innerHTML;
+        message.innerHTML = '';
+        
+        let i = 0;
+        const speed = 20; // typing speed in ms
+        
+        function typeWriter() {
+            if (i < originalText.length) {
+                message.innerHTML += originalText.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+        
+        // Start typing after a short delay
+        setTimeout(typeWriter, 1000);
+        
+        // Add confetti on load
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                for (let i = 0; i < 30; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.style.position = 'fixed';
+                    confetti.style.width = '10px';
+                    confetti.style.height = '10px';
+                    confetti.style.background = ['#D4AF37', '#B76E79', '#5D3FD3'][Math.floor(Math.random() * 3)];
+                    confetti.style.borderRadius = '50%';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '-10px';
+                    confetti.style.pointerEvents = 'none';
+                    confetti.style.zIndex = '100';
+                    confetti.style.animation = `confettiFall ${Math.random() * 2 + 1}s forwards`;
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 3000);
+                }
+                
+                const confettiStyle = document.createElement('style');
+                confettiStyle.textContent = `
+                    @keyframes confettiFall {
+                        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+                        100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(confettiStyle);
+            }, 500);
+        });
+    </script>
+</body>
+      </html>
