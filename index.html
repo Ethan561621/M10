@@ -543,9 +543,12 @@
         // Start typing after a short delay
         setTimeout(typeWriter, 1000);
         
-        // Add confetti on load
+        // Add confetti on load with "10" theme
         window.addEventListener('load', function() {
             setTimeout(() => {
+                // Create "10" with confetti
+                createNumberConfetti(10);
+                
                 for (let i = 0; i < 30; i++) {
                     const confetti = document.createElement('div');
                     confetti.style.position = 'fixed';
@@ -575,6 +578,39 @@
                 document.head.appendChild(confettiStyle);
             }, 500);
         });
+        
+        // Function to create "10" with confetti
+        function createNumberConfetti(number) {
+            // Create "10" text in the sky
+            const numberDisplay = document.createElement('div');
+            numberDisplay.style.position = 'fixed';
+            numberDisplay.style.top = '20%';
+            numberDisplay.style.left = '50%';
+            numberDisplay.style.transform = 'translateX(-50%)';
+            numberDisplay.style.fontFamily = "'Cinzel', serif";
+            numberDisplay.style.fontSize = '6rem';
+            numberDisplay.style.color = 'rgba(212, 175, 55, 0.8)';
+            numberDisplay.style.textShadow = '0 0 20px rgba(212, 175, 55, 0.5)';
+            numberDisplay.style.zIndex = '100';
+            numberDisplay.style.pointerEvents = 'none';
+            numberDisplay.textContent = '10';
+            numberDisplay.style.animation = 'fadeOut 3s forwards';
+            document.body.appendChild(numberDisplay);
+            
+            const numberStyle = document.createElement('style');
+            numberStyle.textContent = `
+                @keyframes fadeOut {
+                    0% { opacity: 1; transform: translateX(-50%) scale(1.5); }
+                    70% { opacity: 1; transform: translateX(-50%) scale(1); }
+                    100% { opacity: 0; transform: translateX(-50%) scale(0.5); }
+                }
+            `;
+            document.head.appendChild(numberStyle);
+            
+            setTimeout(() => {
+                numberDisplay.remove();
+            }, 3000);
+        }
     </script>
 </body>
-      </html>
+</html>
